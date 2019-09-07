@@ -20,6 +20,7 @@ import prof from './img/prof.jpg';
   { <ul class="list-group list-group-flush">
     <li class="list-group-item">Home</li>
     <li class="list-group-item">Profile</li>
+    <li class="list-group-item"><a href="./pendingSkills">Pending Skills</a></li>
                       </ul> }
 
 
