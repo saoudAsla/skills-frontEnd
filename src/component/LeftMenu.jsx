@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import prof from './img/prof.jpg';
+import { BrowserRouter as Router, Link,Route, Switch } from 'react-router-dom'
 
                 class LeftMenu extends Component {
                   render() {
@@ -9,7 +10,7 @@ import prof from './img/prof.jpg';
               
 
 <div class="card bg-light mb-3" style={{maxWidth:'18rem'}}>
-  <div class="card-header">Profile</div>
+  <div class="card-header">Menu</div>
 
   <div class="card-body" style={{margin:40}}>
   <img src={prof}  width='120' height='130'/>
@@ -17,11 +18,11 @@ import prof from './img/prof.jpg';
 
 
 
-  { <ul class="list-group list-group-flush">
-    <li class="list-group-item">Home</li>
+   <ul class="list-group list-group-flush">
+    <li class="list-group-item"><Link to={{pathname: '/home'}}>Home</Link></li>
     <li class="list-group-item">Profile</li>
-    <li class="list-group-item"><a href="./pendingSkills">Pending Skills</a></li>
-                      </ul> }
+    <li class="list-group-item"><Link to={{pathname: '/pendingSkills'}}>Pending Skills</Link></li>
+                      </ul> 
 
 
 
