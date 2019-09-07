@@ -11,8 +11,11 @@ class SkillsApp extends Component {
         return (
             <Router>
                 <>
-          
-                    
+            
+                    <Header/>
+                    <SkillsOverTime/>
+                    <LeftMenu/>
+                    <Footer/>
                     
                 
                 </>
