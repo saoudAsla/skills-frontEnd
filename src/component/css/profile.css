@@ -1,0 +1,17 @@
+#empName {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+label {
+  font-weight: bold;
+}
+
+#profilePicture {
+  display: none;
+}
+
+#imgProfile {
+  width: 150px;
+  height: 150px;
+}
