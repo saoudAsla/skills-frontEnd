@@ -1,0 +1,23 @@
+[
+  {
+    "id": "123783",
+    "projectName": "VodaPhone",
+    "startDate": "2019-3-1",
+    "endDate": "2019-7-1",
+    "status": "In Progress"
+  },
+  {
+    "id": "123784",
+    "projectName": "Bezeq",
+    "startDate": "2018-7-1",
+    "endDate": "2019-3-1",
+    "status": "Finshed"
+  },
+  {
+    "id": "123785",
+    "projectName": "Intel",
+    "startDate": "2019-3-1",
+    "endDate": "2018-7-1",
+    "status": "Finshed"
+  }
+]
