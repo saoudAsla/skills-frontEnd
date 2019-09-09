@@ -4,7 +4,7 @@ import Header from './Header'
 import Footer from './Footer'
 import SkillsOverTime from './SkillsOverTime';
 import LeftMenu from './LeftMenu';
-import PendingSkills from './PendingSkills';
+import ManagerView from './ManagerView';
 
 
 class SkillsApp extends Component {
@@ -15,14 +15,14 @@ class SkillsApp extends Component {
             
                     <Header/>
                     
-
+                    <LeftMenu/>
                     <Switch>
                         <Route path="/" exact component={SkillsOverTime} />
                         <Route path="/home" exact component={SkillsOverTime} />
-                        <Route path="/pendingSkills" exact component={PendingSkills} />
+                        <Route path="/managerView" exact component={ManagerView} />
                     </Switch>
                 
-                    <LeftMenu/>
+                    
                     <Footer/>
                 </>
             </Router>
