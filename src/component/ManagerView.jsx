@@ -3,14 +3,13 @@ import PendingSkills from './PendingSkills';
 import UsersList from './UsersList';
 
 
-class ManagerView extends Component{
-    render(){
-        return(
-            <div style={{ float:'right',marginRight:100}}>
+class ManagerView extends Component {
+    render() {
+        return (
+            <div className="col">
 
-
-              <PendingSkills/>
-              <UsersList history= {this.props.history}/>
+                <PendingSkills />
+                <UsersList history={this.props.history} />
 
             </div>
         )

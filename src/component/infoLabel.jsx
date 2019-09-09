@@ -5,11 +5,11 @@ const InfoLabel = props => {
   return (
     <div className="row">
       <div className="col-sm-3 col-md-2 col-5">
-        <label>{label}</label>
+        <label style={{ fontWeight: "bold" }}>{label}</label>
       </div>
-      <div className="col-md-8 col-6" id="idInput"></div>
+      <div className="col-md-8 col-6" ></div>
       {content}
-    </div>
+    </div >
   );
 };
 
