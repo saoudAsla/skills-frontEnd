@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import prof from './img/prof.jpg';
 import InfoLabel from './infoLabel';
 import Table from './Table';
-import {retrieveProfilePicture, retrieveEmployeeAssignments} from '../service/ProfileService';
+import EmployeeDataService from '../service/ProfileService';
 
 class Profile extends Component {
   constructor(props) {
@@ -13,9 +13,9 @@ class Profile extends Component {
   componentDidMount() {
 
     
-    const employee = JSON.parse(retrieveProfilePicture());
-    const assignments = JSON.parse(retrieveEmployeeAssignments());
-    this.setState({employee, assignments});
+    const employee = EmployeeDataService.retrieveProfilePicture();
+    const assignments = EmployeeDataService.retrieveEmployeeAssignments();
+    this.setState({employee: employee[0], assignments});
 
 
     //const {id} = this.props.match;
@@ -51,9 +51,8 @@ class Profile extends Component {
     } = employee;
 
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-12">
+      
+          <div className="col">
             <div className="card">
               <div className="card-body">
                 <div className="card-title mb-4">
@@ -169,8 +168,7 @@ class Profile extends Component {
               </div>
             </div>
           </div>
-        </div>
-      </div>
+        
     );
   }
 }

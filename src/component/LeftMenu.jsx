@@ -5,7 +5,7 @@ import { BrowserRouter as Router, Link,Route, Switch } from 'react-router-dom'
                 class LeftMenu extends Component {
                   render() {
                       return (
-                              <div style={{ float:'left', marginTop:40}}>
+                              <div className="col-sm-6">
               
               
 
