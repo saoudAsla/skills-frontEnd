@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import prof from './img/prof.jpg';
 import InfoLabel from './infoLabel';
 import Table from './Table';
+import {retrieveProfilePicture, retrieveEmployeeAssignments} from '../service/ProfileService';
 
 class Profile extends Component {
   constructor(props) {
@@ -10,6 +11,14 @@ class Profile extends Component {
   }
 
   componentDidMount() {
+
+    
+    const employee = JSON.parse(retrieveProfilePicture());
+    const assignments = JSON.parse(retrieveEmployeeAssignments());
+    this.setState({employee, assignments});
+
+
+    //const {id} = this.props.match;
     /**
     const response = await fetch('link', {
       method:"GET",
@@ -29,6 +38,7 @@ class Profile extends Component {
 
   render() {
     const { profileImage, assignments, employee } = this.state;
+    
     const {
       name,
       empID,
