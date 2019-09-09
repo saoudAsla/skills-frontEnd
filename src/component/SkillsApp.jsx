@@ -1,35 +1,32 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
-import Header from './Header'
-import Footer from './Footer'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Header from './Header';
+import Footer from './Footer';
 import SkillsOverTime from './SkillsOverTime';
 import LeftMenu from './LeftMenu';
-import PendingSkills from './PendingSkills';
-import Profile from './profile';
-
+import ManagerView from './ManagerView';
+import Profile from './Profile';
 
 class SkillsApp extends Component {
-    render() {
-        return (
-            <Router>
-                <>
-            
-                    <Header/>
-                    
+  render() {
+    return (
+      <Router>
+        <>
+          <Header />
 
-                    <Switch>
-                        <Route path="/" exact component={SkillsOverTime} />
-                        <Route path="/home" exact component={SkillsOverTime} />
-                        <Route path="/pendingSkills" exact component={PendingSkills} />
-                        <Route path="/profile/:id" exact component={Profile} />
-                    </Switch>
-                
-                    <LeftMenu/>
-                    <Footer/>
-                </>
-            </Router>
-        )
-    }
+          <LeftMenu />
+          <Switch>
+            <Route path="/" exact component={SkillsOverTime} />
+            <Route path="/home" exact component={SkillsOverTime} />
+            <Route path="/managerView" exact component={ManagerView} />
+            <Route path="/profile/:id" exact component={Profile} />
+          </Switch>
+
+          <Footer />
+        </>
+      </Router>
+    );
+  }
 }
 
-export default SkillsApp
+export default SkillsApp;
