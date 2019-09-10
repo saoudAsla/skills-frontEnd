@@ -3,7 +3,7 @@ import ViewSkillsTable from './ViewSkillsTable';
 import Chart from 'react-google-charts';
 
 
-const SkillsTabContent = ({ name, chartData, skills }) => {
+const SkillsTabContent = ({ name, chartData }) => {
     return (
         <div className="media">
             <div className="media-body">
@@ -26,7 +26,7 @@ const SkillsTabContent = ({ name, chartData, skills }) => {
                 </div>
 
                 <div className="row-sm-12" style={{ marginTop: "10px" }}>
-                    <ViewSkillsTable skillsArray={skills ? skills : []} />
+                    <ViewSkillsTable type={name} />
                 </div>
             </div>
 

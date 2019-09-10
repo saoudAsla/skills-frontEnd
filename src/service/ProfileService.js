@@ -7,19 +7,16 @@ const USERNAME = 'someUser';
 const BASE_API_URL = `http://localhost:8080/api`;
 
 class EmployeeDataService {
- async retrieveProfile(id) {
+ /*async*/ retrieveProfile(id) {
 
- /*  try {
-     const response = await fetch(`${BASE_API_URL}/employee/${id}`);
+ /*  
+
+     const response = await axios.get(`${BASE_API_URL}/employee/${id}`);
    const data = await response.json();
 
-   const imageRes = await fetch(data.imageUrl);
-   // parse image
-
+    // if error is thrown handle in UI with try catch
    //return data;
-   } catch (error) {
-     throw error;  // handle error in UI
-   }*/
+  */
 
     return employee;
   }
@@ -27,18 +24,16 @@ class EmployeeDataService {
   async retrieveProfilePicture(id) {
    /*  const imageRes = await fetch(`imageURI/${id}`);
    // parse image*/
+       // if error is thrown handle in UI with try catch
    // return image;
   }
 
   async retrieveEmployeeAssignments(id) {
     /*  try {
-     const response = await fetch(`${BASE_API_URL}/assignments/${id}`);
+     const response = await axios.get(`${BASE_API_URL}/assignments/${id}`);
    const assignments = await response.json();
 
-   const imageRes = await fetch(data.imageUrl);
-   // parse image
-
-   //return data;
+   //return assignments;
    } catch (error) {
      throw error; // handle error in UI
    }*/

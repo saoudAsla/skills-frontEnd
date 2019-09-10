@@ -9,29 +9,31 @@ class Profile extends Component {
     this.state = { profileImage: null, employee: {} };
   }
 
+  /*async*/
   componentDidMount() {
 
-
-    const employee = EmployeeDataService.retrieveProfilePicture();
-    const assignments = EmployeeDataService.retrieveEmployeeAssignments();
-    this.setState({ employee, assignments });
-    const { id } = this.props.match.params;
-    console.log(employee);
-    //const {id} = this.props.match;
+    const employee = EmployeeDataService.retrieveProfile();
+    this.setState({ employee });
+    console.log(employee)
     /**
-    const response = await fetch('link', {
-      method:"GET",
-      headers: { auth: '', Accept: 'application/json' }
-    });
-    const employee = await response.json();
+    const {id} = props.match.params;
+    let empolyee = null;
+    try{
+       employee = await SkillServices.retrieveProfile(id);
+      this.setState({profileImage, employee, assignments})
+    }catch(error){
+      // handle error in a dialog
+    }
+    if(employee)
+    try{
+        const imageResponse = await SkillServices.retrieveProfilePicture(id);
+        //parse image
+        this.setState({profileImage})
 
-    const assignmentsReq = fetch(`assignments link`)
-    const image = fetch(`image`);
-    const [imageBuffer, assignmentsRes] = awiat Promise.all(image, assignments);
-
-    const [profileImage, assignments] =  awiat Promise.all(imageBuffer.arrayBuffer(), assignmentsRes.json());
+    }catch(err){
+      console.log(err)
+    }
     
-    this.setState({profileImage, employee, assignments})
      */
   }
 

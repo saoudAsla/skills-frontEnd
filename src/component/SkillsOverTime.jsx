@@ -16,7 +16,7 @@ class SkillsOverTime extends Component {
     super(props)
     this.state = {
       employeeID: null,
-      skillsHistory: [{ "id": 1 }]
+
       //[[3,4],[1,2]]
 
     }
@@ -39,6 +39,7 @@ class SkillsOverTime extends Component {
 
 
   render() {
+
     return (
 
 
@@ -89,7 +90,7 @@ class SkillsOverTime extends Component {
                 ['2015', 3, 4],
                 ['2016', 5, 4],
               ]}
-              skills={this.state.skillsHistory}
+
             />
           </div>
 
@@ -108,11 +109,14 @@ class SkillsOverTime extends Component {
               ['2015', 2, 3],
               ['2016', 2, 5],
             ]}
-              skills={[]} />
+            />
+
+
           </div>
 
         </div>
       </div>
+
     )
   }
 }
