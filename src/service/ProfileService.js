@@ -1,6 +1,6 @@
 import axios from 'axios';
-import employee from './employee.json';
-import assignments from './assignments.json';
+import employee from './employeeInfo.json';
+import assignments from './assignmentsOfEmployee.json';
 
 const USERNAME = 'someUser';
 
