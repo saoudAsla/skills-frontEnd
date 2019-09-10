@@ -22,7 +22,7 @@ class SkillsApp extends Component {
                 <div className="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
                   <Switch>
                     <Route path="/" exact component={SkillsOverTime} />
-                    <Route path="/home" exact component={SkillsOverTime} />
+                    <Route path="/home/:id" exact component={SkillsOverTime} />
                     <Route path="/managerView" exact component={ManagerView} />
                     <Route path="/profile/:id" exact component={Profile} />
                   </Switch>
