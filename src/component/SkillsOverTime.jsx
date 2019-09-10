@@ -89,14 +89,14 @@ class SkillsOverTime extends Component {
         </div>
         <div className="row">
           <div className="col-sm-12">
-            <label >somthing Skills</label>
+            <label >Product Skills</label>
             <Table columns={["Skill", "Date", "Grade", "Status", "Comment", "Details"]} content={this.state.skillsHistory ? this.state.skillsHistory : []} />
           </div>
         </div>
 
         <div className="row">
           <div className="col-sm-12">
-            <label >Pending Skills</label>
+            <label >Technical Skills</label>
             <Table columns={["Skill", "Date", "Grade", "Status", "Comment", "Details"]} content={this.state.skillsHistory ? this.state.skillsHistory : []} />
           </div>
         </div>
