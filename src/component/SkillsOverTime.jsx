@@ -1,6 +1,4 @@
-import Chart from 'react-google-charts';
 import SkillsDataService from '../service/SkillsDataService';
-import ViewSkillsTable from './ViewSkillsTable';
 import SkillsTabContent from './SkillsTabContent';
 
 var React = require('react');
@@ -17,20 +15,24 @@ class SkillsOverTime extends Component {
   constructor(props) {
     super(props)
     this.state = {
+      employeeID: null,
       skillsHistory: [{ "id": 1 }]
       //[[3,4],[1,2]]
 
     }
   }
   componentDidMount() {
-    //this.refreshData();
+    //const { id } = this.props.match.params;
+
+    //this.setState({employeeID :id})
+    //this.refreshData(id);
   }
 
 
-  refreshData() {
-    let data = SkillsDataService.retrieveAllSkills("userName")
+  refreshData(id) {
+    let data = SkillsDataService.retrieveAllSkills(id)
 
-    this.setState({ skillsHistory: data })
+    this.setState({ employeeID: id, skillsHistory: data })
     //{this.state.skillsHistory[0].id}
   }
 
@@ -40,7 +42,7 @@ class SkillsOverTime extends Component {
     return (
 
 
-      <div className="col-12">
+      <div >
         <ul className="nav nav-tabs mb-4" id="myTab" role="tablist">
           <li className="nav-item">
             <a
@@ -69,12 +71,12 @@ class SkillsOverTime extends Component {
              </a>
           </li>
         </ul>
-        <div className="tab-content ml-1">
+        <div className="tab-content ml-1" id="nav-tabContent">
           <div
             className="tab-pane fade show active"
             id="technicalSkills"
             role="tabpanel"
-            aria-labelledby="basicInfo-tab"
+            aria-labelledby="technicalSkills-tab"
           >
             <SkillsTabContent
 
@@ -92,10 +94,10 @@ class SkillsOverTime extends Component {
           </div>
 
           <div
-            className="tab-pane fade"
+            className="tab-pane fade "
             id="productSkills"
             role="tabpanel"
-            aria-labelledby="ConnectedServices-tab"
+            aria-labelledby="productSkills-tab"
           >
 
             <SkillsTabContent name="Products" chartData={[
