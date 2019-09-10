@@ -5,7 +5,7 @@ import Footer from './Footer';
 import SkillsOverTime from './SkillsOverTime';
 import LeftMenu from './LeftMenu';
 import ManagerView from './ManagerView';
-import Profile from './Profile';
+import Profile from './profile';
 
 class SkillsApp extends Component {
   render() {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import DataService from '../service/SkillsDataService';
 
 
 class PendingSkills extends Component {
@@ -7,71 +7,10 @@ class PendingSkills extends Component {
     super(props)
     this.state = {
 
-      productSkillsReq: [
-        {
-          skillName: "CRM",
-          skillStartDate: "01/08/2018",
-          grade: "4",
-          skillLastUpdatedDate: "01/09/2019",
-          userName: "Philip Sadlo"
-        },
-        {
-          skillName: "Billing",
-          skillStartDate: "01/09/2018",
-          grade: "3",
-          skillLastUpdatedDate: "01/09/2019",
-          userName: "Susanne Kroemker"
-        },
-        {
-          skillName: "OMS",
-          skillStartDate: "01/08/2019",
-          grade: "3",
-          skillLastUpdatedDate: "01/08/2019",
-          userName: "Barbara schwarz"
-        },
+      productSkillsReq: DataService.retrieveRequestedProductSkillsConfirmation(),
 
-      ],
-
-
-
-      technicalSkillsReq: [
-        {
-          skillName: "Java",
-          skillStartDate: "01/08/2018",
-          grade: "4",
-          skillLastUpdatedDate: "01/09/2019",
-          userName: "Elias Nijim"
-        },
-        {
-          skillName: "Python",
-          skillStartDate: "01/09/2018",
-          grade: "3",
-          skillLastUpdatedDate: "01/09/2019",
-          userName: "Saoud Asla"
-        },
-        {
-          skillName: "C#",
-          skillStartDate: "01/08/2019",
-          grade: "2",
-          skillLastUpdatedDate: "01/08/2019",
-          userName: "Jeres Zamel"
-        },
-        {
-          skillName: "C++",
-          skillStartDate: "01/08/2019",
-          grade: "3",
-          skillLastUpdatedDate: "01/08/2019",
-          userName: "Amjad Nassar"
-        },
-        {
-          skillName: "C++",
-          skillStartDate: "01/06/2017",
-          grade: "4",
-          skillLastUpdatedDate: "1/7/2019",
-          userName: "majd Nassar"
-        },
-
-      ]
+      technicalSkillsReq: DataService.retrieveRequestedTechnicalSkillsConfirmation(),
+        
     }
   }
 
@@ -106,8 +45,8 @@ class PendingSkills extends Component {
                             <tr>
                               <th>User Name</th>
                               <th>Skill Name</th>
-                              <th>Start Date</th>
-                              <th>Last Updated Date</th>
+                              
+                              <th>Request Date</th>
 
                               <th>Grade</th>
                               <th>Comment</th>
@@ -125,9 +64,9 @@ class PendingSkills extends Component {
                                   <tr key={request.userName}>
                                     <td>{request.userName}</td>
                                     <td>{request.skillName}</td>
-                                    <td>{request.skillStartDate}</td>
+                                    
                                     <td>{request.skillLastUpdatedDate}</td>
-                                    <td>{request.skillGrade}</td>
+                                    <td>{request.grade}</td>
                                     <td><input type="text"></input></td>
                                     <td><button class="btn btn-danger btn-sm"> Reject </button>&nbsp;<button class="btn btn-success btn-sm">approve</button></td>
                                   </tr>
@@ -173,7 +112,7 @@ class PendingSkills extends Component {
                                       <td>{request.skillName}</td>
                                       <td>{request.skillStartDate}</td>
                                       <td>{request.skillLastUpdatedDate}</td>
-                                      <td>{request.skillGrade}</td>
+                                      <td>{request.grade}</td>
                                       <td><input type="text"></input></td>
                                       <td><button class="btn btn-danger btn-sm"> Reject </button>&nbsp;<button class="btn btn-success btn-sm">approve</button></td>
                                     </tr>

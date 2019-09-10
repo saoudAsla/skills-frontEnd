@@ -1,17 +1,12 @@
 import React, { Component } from 'react';
-
+import DataService from '../service/SkillsDataService';
 
 
 class UsersList extends Component{
   constructor(props) {
     super(props)
     this.state = {
-        users: [
-          {id:1,firstName:"Saoud",lastName:"Asla", mail:"employee1@gmail.com",phone:"123-456789",role:"Employee",office:"Nazareth, Israel",img:"https://bootdey.com/img/Content/user_1.jpg"},
-          {id:2,firstName:"Amjad",lastName:"Nassar", mail:"employee2@gmail.com",phone:"123-456789",role:"Employee",office:"Nazareth, Israel",img:"https://bootdey.com/img/Content/user_2.jpg"},
-          {id:3,firstName:"philip",lastName:"Shwarz", mail:"teemLeader1@gmail.com",phone:"123-456789",role:"Team Leader",office:"Nazareth, Israel",img:"https://bootdey.com/img/Content/user_3.jpg"},
-
-        ],
+        users: DataService.retrieveEmployeesOfManagerById(1),
         
     }
     this.skillsClicked = this.skillsClicked.bind(this)
