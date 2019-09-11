@@ -24,7 +24,6 @@ class MyOwnSkills extends Component {
   }
   deleteSkill(el) {
     //TODO
-
   }
 
   render() {
@@ -48,10 +47,10 @@ class MyOwnSkills extends Component {
                     <div className="col-12">
                       <ul className="nav nav-tabs mb-4" id="myTab" role="tablist">
                         <li className="nav-item">
-                          <a className="nav-link active" id="technicalSkills-tab" data-toggle="tab" href="#technicalSkills" role="tab" aria-selected="true">Required Technical Skills confirmations</a>
+                          <a className="nav-link active" id="technicalSkills-tab" data-toggle="tab" href="#technicalSkills" role="tab" aria-selected="true">Technical Skills confirmations</a>
                         </li>
                         <li className="nav-item">
-                          <a className="nav-link" id="productSkills-tab" data-toggle="tab" href="#productSkills" role="tab" aria-selected="false">Required Product Skills confirmations</a>
+                          <a className="nav-link" id="productSkills-tab" data-toggle="tab" href="#productSkills" role="tab" aria-selected="false">Product Skills confirmations</a>
                         </li>
                       </ul>
 
