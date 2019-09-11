@@ -5,7 +5,9 @@ import Footer from './Footer';
 import SkillsOverTime from './SkillsOverTime';
 import LeftMenu from './LeftMenu';
 import ManagerView from './ManagerView';
-import Profile from './profile';
+import Profile from './Profile';
+import EmployeeSkills from './EmployeeSkills';
+import MyOwnSkills from './MyOwnSkills';
 
 class SkillsApp extends Component {
   render() {
@@ -21,9 +23,11 @@ class SkillsApp extends Component {
                 </div>
                 <div className="col-12 col-md-9 col-xl-8 py-md-3 pl-md-5 bd-content" role="main">
                   <Switch>
-                    <Route path="/" exact component={SkillsOverTime} />
-                    <Route path="/home/:id" exact component={SkillsOverTime} />
+                    <Route path="/" exact component={MyOwnSkills} />
+                    <Route path="/home" exact component={MyOwnSkills} />
+                    <Route path="/home/:id" exact component={MyOwnSkills} />
                     <Route path="/managerView" exact component={ManagerView} />
+                    <Route path="/EmployeeSkills" exact component={EmployeeSkills} />
                     <Route path="/profile/:id" exact component={Profile} />
                   </Switch>
                 </div>

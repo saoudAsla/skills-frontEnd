@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import DataService from '../service/SkillsDataService';
-
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 class UsersList extends Component{
   constructor(props) {
@@ -46,7 +46,7 @@ skillsClicked() {
       <td style={{verticalAlign: "middle"}}>{user.mail}</td>
       <td style={{verticalAlign: "middle"}}>{user.phone}</td>
       <td style={{verticalAlign: "middle"}}>{user.office}</td>
-      <td style={{verticalAlign: "middle"}}><button class="btn-primary btn-sm">Skills</button></td>
+      <td style={{verticalAlign: "middle"}}><Link to={{ pathname: '/EmployeeSkills' }}><button class="btn-primary btn-sm">Skills</button></Link></td>
 
         </tr>
       )

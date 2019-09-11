@@ -1,13 +1,11 @@
 import axios from 'axios'
-
-import data from './SkillsHistory.json';
 import employeePersonalInfo from './employeeInfo.json';
 import assignmentsOfEmployee from './assignmentsOfEmployee.json';
-
 import EmployeesOfManager from './EmployeesOfManager';
 import RequestedTechnicalSkillsConfirmation from './RequestedTechnicalSkillsConfirmation';
 import RequestedProductSkillsConfirmation from './RequestedProductSkillsConfirmation';
-
+import TechnicalSkills from './TechnicalSkills';
+import ProductSkills from './ProductSkills';
 
 const USERNAME = 'someUser'
 
@@ -18,24 +16,24 @@ class SkillsDataService {
 
     retrieveProductSkillsById(id) {
         //return axios.get(`${API_URL}/Skills`);
-        return data;
+        return ProductSkills;
     }
 
 
     retrieveTechnicalSkillsById(id) {
         //return axios.get(`${API_URL}/Skills`);
-        return data;
+        return TechnicalSkills;
     }
 
 
     retrieveProductSkillsHistoryById(id) {
         //return axios.get(`${API_URL}/Skills`);
-        return data;
+       
     }
     
     retrieveTechnicalSkillsHistoryById(id) {
         //return axios.get(`${API_URL}/Skills`);
-        return data;
+     
     }
 
     retrieveRequestedTechnicalSkillsConfirmation(managerId){
@@ -83,7 +81,7 @@ class SkillsDataService {
 
     removeUnapprovedSkillById(id){
         //return axios.get(`${USERNAME_API_URL}/Skills`);
-        return data;
+     
     }
 }
 

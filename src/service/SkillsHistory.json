@@ -1,7 +1,0 @@
-﻿[{"SkillId":1,"SkillName":"Java","Date":2015,"Grade":1},
-{"SkillId":1,"SkillName":"Java","Date":2017,"Grade":2} ,
-{"SkillId":2, "SkillName": "Python", "Date": 2015, "Grade":1}, 
-{"SkillId":2, "SkillName": "Python", "Date": 2016, "Grade":2}, 
-{"SkillId": 2, "SkillName": "Python", "Date": 2017, "Grade":3}, 
-{"SkillId": 2, "SkillName": "Python", "Date": 2018, "Grade":5}
-]

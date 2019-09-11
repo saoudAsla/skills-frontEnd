@@ -1,10 +1,11 @@
 {
-  "name": "Jeries Zamel",
+  "name": "Susanne Shwarz",
   "empID": "6598636",
-  "id": "309885442",
-  "birthDate": "2/2/1992",
-  "email": "Zamel.65@gmail.com",
-  "phone": "050-3092009",
+  "img": "https://bootdey.com/img/Content/user_2.jpg",
+  "role":"Manager",
+  "birthDate": "1/2/1977",
+  "email": "susanneS@gmail.com",
+  "phone": "123-4567891",
   "department": "Nazareth",
   "location": "Israel"
 }

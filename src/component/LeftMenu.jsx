@@ -22,7 +22,7 @@ class LeftMenu extends Component {
         </div>
 
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><Link to={{ pathname: '/home' }}>Home</Link></li>
+          <li class="list-group-item"><Link to={{ pathname: '/home' }}>Own Skills</Link></li>
           <li class="list-group-item"><Link to={{ pathname: '/profile/1' }}>Profile</Link></li>
           <li class="list-group-item"><Link to={{ pathname: '/managerView' }}>Manager View</Link></li>
         </ul>

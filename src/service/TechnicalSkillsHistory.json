@@ -1,0 +1,42 @@
+﻿[
+  {
+    skillname: "Java",
+    skillHistories: [
+      { level: 2, date: "2019-3-1" },
+      { level: 3, date: "2019-4-1" },
+      { level: 3, date: "2019-5-1" },
+      { level: 3, date: "2019-6-1" },
+      { level: 4, date: "2019-7-1" }
+    ]
+  },
+  {
+    skillname: "C",
+    skillHistories: [
+      { level: 1, date: "2019-3-1" },
+      { level: 2, date: "2019-4-1" },
+      { level: 2, date: "2019-5-1" },
+      { level: 3, date: "2019-6-1" },
+      { level: 4, date: "2019-6-1" }
+    ]
+  },
+  {
+    skillname: "CSS",
+    skillHistories: [
+      { level: 2, date: "2019-3-1" },
+      { level: 2, date: "2019-4-1" },
+      { level: 2, date: "2019-5-1" },
+      { level: 2, date: "2019-6-1" },
+      { level: 1, date: "2019-7-1" }
+    ]
+  },
+  {
+    skillname: "JS",
+    skillHistories: [
+      { level: 4, date: "2019-3-1" },
+      { level: 4, date: "2019-4-1" },
+      { level: 5, date: "2019-5-1" },
+      { level: 5, date: "2019-6-1" },
+      { level: 4, date: "2019-7-1" }
+    ]
+  }
+]

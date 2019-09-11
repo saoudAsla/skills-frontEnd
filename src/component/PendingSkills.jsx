@@ -89,8 +89,7 @@ class PendingSkills extends Component {
                               <tr>
                                 <th>User Name</th>
                                 <th>Skill Name</th>
-                                <th>Start Date</th>
-                                <th>Last Updated Date</th>
+                                <th>Request Date</th>
 
                                 <th>Grade</th>
                                 <th>Comment</th>
@@ -110,7 +109,6 @@ class PendingSkills extends Component {
                                     <tr key={request.userName}>
                                       <td>{request.userName}</td>
                                       <td>{request.skillName}</td>
-                                      <td>{request.skillStartDate}</td>
                                       <td>{request.skillLastUpdatedDate}</td>
                                       <td>{request.grade}</td>
                                       <td><input type="text"></input></td>

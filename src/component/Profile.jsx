@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import prof from './img/prof.jpg';
 import InfoLabel from './infoLabel';
-import EmployeeDataService from '../service/ProfileService';
+import EmployeeDataService from '../service/SkillsDataService';
 
 class Profile extends Component {
   constructor(props) {
@@ -12,7 +11,7 @@ class Profile extends Component {
   /*async*/
   componentDidMount() {
 
-    const employee = EmployeeDataService.retrieveProfile();
+    const employee = EmployeeDataService.retrieveEmployeeProfileInfoById();
     this.setState({ employee });
     console.log(employee)
     /**
@@ -43,12 +42,13 @@ class Profile extends Component {
     const {
       name,
       empID,
-      id,
-      birthDates,
+      birthDate,
       email,
+      role,
       phone,
       department,
-      location
+      location,
+      img,
     } = employee;
 
     return (
@@ -59,7 +59,7 @@ class Profile extends Component {
             <div className="d-flex justify-content-start">
               <div className="image-container">
                 <img
-                  src={profileImage ? profileImage : prof}
+                  src={img}
                   width="150px"
                   height="150px"
                   id="imgProfile"
@@ -74,8 +74,11 @@ class Profile extends Component {
                   fontWeight: "bold"
                 }}>
                   {name}
+                  <br></br><br></br>
+                  <font color="blue">{role}</font>
                 </h2>
               </div>
+              
               <div className="ml-auto">
                 <input
                   type="button"
@@ -114,9 +117,9 @@ class Profile extends Component {
                 >
                   <InfoLabel label="Emplyee ID" content={empID} />
                   <hr />
-                  <InfoLabel label="ID" content={id} />
+                  <InfoLabel label="Role" content={role} />
                   <hr />
-                  <InfoLabel label="Birth Date" content={birthDates} />
+                  <InfoLabel label="Birth Date" content={birthDate} />
                   <hr />
                   <InfoLabel label="Email" content={email} />
                   <hr />
