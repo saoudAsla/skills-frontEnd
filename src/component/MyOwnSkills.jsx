@@ -1,194 +1,152 @@
 import React, { Component } from 'react';
-import Chart from 'react-google-charts';
-
 import DataService from "../service/SkillsDataService"
+import SkillsOverViewTab from './SkillsOverViewTab';
 
+const productSkills = "productSkills";
+const technicalSkills = "technicalSkills";
 
 class MyOwnSkills extends Component {
-  constructor(props) {
-    super(props)
+
+  constructor() {
+    super();
     this.state = {
-
-      productSkills: DataService.retrieveProductSkillsById(2),
-
-      technicalSkills: DataService.retrieveProductSkillsById(2),
-
+      currentTab: technicalSkills,
+      [productSkills]: [],
+      [technicalSkills]: [],
     }
-
-    this.updateSkill = this.updateSkill.bind(this);
+    this.submitUpdate = this.submitUpdate.bind(this);
     this.deleteSkill = this.deleteSkill.bind(this);
+    this.switchTab = this.switchTab.bind(this);
   }
 
-  updateSkill(el) {
-    //TODO
+  componentDidMount() {
+
+    /*try {
+      if (this.state.currentTab === technicalSkills) {
+        const data = await DataService.retrieveTechnicalSkillsById(3);
+
+        this.setState({ technicalSkills: data })
+      } else if (this.state.currentTab === productSkills) {
+        const data = await DataService.retrieveProductSkillsById(3);
+
+        this.setState({ productSkills: data })
+
+      }
+
+    } catch (error) {
+      console.log(error.message)
+    }*/
+
+    this.setState({
+      productSkills: DataService.retrieveProductSkillsById(2),
+      technicalSkills: DataService.retrieveTechnicalSkillsById(2)
+    })
   }
-  deleteSkill(el) {
-    //TODO
+
+  async deleteSkill(type, id) {
+
+
+
+    /* try {
+       const skillToUpdate =  this.state[type].find(skill => skill.name === id);
+       skillToUpdate.grade = grade;
+       const response = await DataService.removeUnapprovedSkillById(skillToUpdate)
+       
+     } catch (error) {
+       // display error ui
+     }finally{
+       if (type === productSkills){
+         const data = await DataService.retrieveProductSkillsById('userid');
+         
+         this.setState({ [type]: data })
+        
+     } else if (type === technicalSkills) {
+         const data = await DataService.retrieveTechnicalSkillsById('userid');
+         
+         this.setState({ [type]: response.data })
+         
+       }
+     }*/
+
+    this.setState({ [type]: this.state[type].filter(skill => skill.employeeSkillId !== id) })
+  }
+
+  switchTab(type) {
+    /*if (!this.state[type]) {
+      if (this.state.currentTab === technicalSkills) {
+        this.setState({ technicalSkills: DataService.retrieveTechnicalSkillsById(2), currentTab: type })
+      } else if (this.state.currentTab === productSkills) {
+        this.setState({ productSkills: DataService.retrieveProductSkillsById(2), currentTab: type })
+
+      }
+
+    } else*/
+    this.setState({ currentTab: type })
+  }
+
+  async submitUpdate(type, id, grade) {
+    /*try {
+      const skillToUpdate =  this.state[type].find(skill => skill.name === id);
+      skillToUpdate.grade = grade;
+      const response = await DataService.updateSkillByIdSkill(skillToUpdate)
+      
+    } catch (error) {
+      // display error ui
+    }finally{
+      if (type === productSkills){
+        const response = await DataService.retrieveProductSkillsById('3');
+        if (response.status === 200) {
+          this.setState({ [type]: response.data })
+        }
+    } else if (type === technicalSkills) {
+        const response = await DataService.retrieveTechnicalSkillsById('3');
+        if (response.status === 200) {
+          this.setState({ [type]: response.data })
+        }
+      }
+    }*/
+    console.log(type, id, grade)
+    this.setState({
+      [type]: this.state[type].map(skill => {
+        if (skill.employeeSkillId === id) {
+          skill.level = grade;
+        }
+        return skill;
+      })
+    });
+
+
   }
 
   render() {
+
     return (
       <div>
+        <div className="container" >
+          <div className="col card">
+            <div className="card-body">
+              <div className="col-12">
+                <ul className="nav nav-tabs mb-4" id="myTab" role="tablist">
+                  <li className="nav-item">
+                    <a className="nav-link active" id="technicalSkills-tab" data-toggle="tab" href="#technicalSkills" role="tab" aria-selected="true" onClick={e => this.switchTab(technicalSkills)}>Technical Skills confirmations</a>
+                  </li>
+                  <li className="nav-item">
+                    <a className="nav-link" id="productSkills-tab" data-toggle="tab" href="#productSkills" role="tab" aria-selected="false" onClick={e => this.switchTab(productSkills)}>Product Skills confirmations</a>
+                  </li>
+                </ul>
 
-
-
-
-        <div className="container">
-
-
-          <div className="row">
-            <div className="col">
-              <div className="card">
-
-                <div className="card-body">
-
-
-                  <div className="row">
-                    <div className="col-12">
-                      <ul className="nav nav-tabs mb-4" id="myTab" role="tablist">
-                        <li className="nav-item">
-                          <a className="nav-link active" id="technicalSkills-tab" data-toggle="tab" href="#technicalSkills" role="tab" aria-selected="true">Technical Skills confirmations</a>
-                        </li>
-                        <li className="nav-item">
-                          <a className="nav-link" id="productSkills-tab" data-toggle="tab" href="#productSkills" role="tab" aria-selected="false">Product Skills confirmations</a>
-                        </li>
-                      </ul>
-
-                      <div className="tab-content ml-1" id="myTabContent">
-
-                        <div className="tab-pane fade show active" id="technicalSkills" role="tabpanel" aria-labelledby="technicalSkills-tab">
-                          <div className="google-chart">
-                            <Chart
-                              width={800}
-                              height={'300px'}
-                              chartType="AreaChart"
-                              loader={<div>Loading Chart</div>}
-                              data={[
-                                ['Year', 'Sales', 'Expenses'],
-                                ['2013', 1, 2],
-                                ['2014', 2, 4],
-                                ['2015', 3, 4],
-                                ['2016', 5, 4],
-                              ]}
-                              options={{
-                                title: 'Technical Skills Over Time',
-                                hAxis: { title: 'Year', titleTextStyle: { color: '#333' } },
-                                vAxis: { minValue: 0 },
-                                // For the legend to fit, we make the chart area smaller
-                                chartArea: { width: '50%', height: '70%' },
-                                // lineWidth: 25
-                              }}
-                            />
-                          </div>
-                          <table className="table table-hover table-sm">
-                            <thead className="thead-dark">
-                              <tr>
-                                <th>Skill</th>
-                                <th>Date</th>
-                                <th>Grade</th>
-                                <th>Status</th>
-                                <th>Comment</th>
-                                <th>Edit</th>
-                              </tr>
-                            </thead>
-                            <tbody id="technicalReq">
-                              {
-
-                                this.state.technicalSkills.map(
-                                  (skill, index) =>
-                                    <tr key={index}>
-                                      <td>{skill.name}</td>
-                                      <td>{skill.date}</td>
-                                      <td>{skill.grade}</td>
-                                      <td>{skill.status}</td>
-                                      <td>{skill.comment}</td>
-                                      <td><button className="btn btn-danger btn-sm"> Delete </button>&nbsp;<button className="btn btn-alert btn-sm">Update</button></td>
-                                    </tr>
-                                )
-                              }
-                            </tbody>
-                          </table>
-                        </div>
-                        <div className="tab-pane fade active" id="productSkills" role="tabpanel" aria-labelledby="productSkills-tab">
-
-                          <div >
-                            <Chart
-                              width={800}
-                              height={'300px'}
-                              chartType="AreaChart"
-                              loader={<div>Loading Chart</div>}
-                              data={[
-                                ['Year', 'Billing', 'CRM'],
-                                ['2013', 1, 0],
-                                ['2013', 1, 2],
-                                ['2014', 1, 2],
-                                ['2015', 2, 3],
-                                ['2016', 2, 5],
-                              ]}
-                              options={{
-                                title: 'Product Skills Over Time',
-                                hAxis: { title: 'Year', titleTextStyle: { color: '#333' } },
-                                vAxis: { minValue: 0 },
-                                // For the legend to fit, we make the chart area smaller
-                                chartArea: { width: '50%', height: '70%' },
-                                // lineWidth: 25
-                              }}
-                            />
-
-                          </div>
-
-                          <table className="table table-hover table-sm">
-                            <thead className="thead-dark">
-                              <tr>
-                                <th>Skill</th>
-                                <th>Date</th>
-                                <th>Grade</th>
-                                <th>Status</th>
-                                <th>Comment</th>
-                                <th>Edit</th>
-                              </tr>
-                            </thead>
-                            <tbody id="productReq">
-
-                              {
-                                this.state.productSkills.map(
-                                  (skill, index) =>
-                                    <tr key={index}>
-                                      <td>{skill.name}</td>
-                                      <td>{skill.date}</td>
-                                      <td>{skill.grade}</td>
-                                      <td>{skill.status}</td>
-                                      <td>{skill.comment}</td>
-                                      <td><button className="btn btn-danger btn-sm"> Delete </button>&nbsp;<button className="btn btn-alert btn-sm">Update</button></td>
-                                    </tr>
-                                )
-                              }
-                            </tbody>
-                          </table>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
+                <div className="tab-content ml-1" id="myTabContent">
+                  <SkillsOverViewTab type={this.state.currentTab} skills={this.state[this.state.currentTab]} deleteClick={this.deleteSkill} submitUpdate={this.submitUpdate} />
                 </div>
+
               </div>
             </div>
           </div>
-
-
-
         </div>
+      </div>
 
 
-
-      </div >
     )
   }
 }
 export default MyOwnSkills
-
-
-
-
-
-
