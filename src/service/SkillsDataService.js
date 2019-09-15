@@ -9,20 +9,27 @@ import ProductSkills from './ProductSkills';
 
 const USERNAME = 'someUser'
 
-const USERNAME_API_URL = `http://localhost:8080/SKILLS/${USERNAME}`
+const API_URL = `http://localhost:8080/api/`
 
 
 class SkillsDataService {
 
-    retrieveProductSkillsById(id) {
-        //return axios.get(`${API_URL}/Skills`);
-        return ProductSkills;
+    async retrieveProductSkillsById(id) {
+        const response = await axios.get(`${API_URL}/skills/employeeskills/${id}/PRODUCT`);
+         if (response.status === 200) {
+           return response.data;
+         }
+        return null;
+        //return ProductSkills;
     }
 
 
-    retrieveTechnicalSkillsById(id) {
-        //return axios.get(`${API_URL}/Skills`);
-        return TechnicalSkills;
+   async retrieveTechnicalSkillsById(id) {
+        const response = await axios.get(`${API_URL}/skills/employeeskills/${id}/TECHNICAL`);
+         if (response.status === 200) {
+           return response.data;
+         } 
+       // return TechnicalSkills;
     }
 
 
@@ -71,17 +78,25 @@ class SkillsDataService {
         //return axios.get(`${USERNAME_API_URL}/Skills`);
     }
 
-    addNewSkill(){
-        //return axios.get(`${USERNAME_API_URL}/Skills`);
+    async addNewSkill(employeeId, skillId, level, date){
+        const response = await axios.post(`${API_URL}/skills/`,{employeeId,skillId,level, date});
+         if (response.status === 200) {
+           return response.data;
+         } 
     }
 
-    updateSkillByIdSkill(){
-        //return axios.get(`${USERNAME_API_URL}/Skills`);
+    async updateSkillByIdSkill(id, level){
+        const response = await axios.post(`${API_URL}/skills/updatelevel/`,{id,level});
+         if (response.status === 200) {
+           return response.data;
+         } 
     }
 
-    removeUnapprovedSkillById(id){
-        //return axios.get(`${USERNAME_API_URL}/Skills`);
-     
+    async removeUnapprovedSkillById(id){
+        const response = await axios.delete(`${API_URL}/skills/${id}`);
+         if (response.status === 200) {
+           return response.data;
+         }      
     }
 }
 

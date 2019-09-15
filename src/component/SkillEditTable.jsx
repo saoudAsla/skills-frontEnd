@@ -55,6 +55,7 @@ class SkillEditTable extends Component {
 
         const { type, cancelUpdate, submitUpdate, skill } = this.props;
         return (
+
             <div className="row">
                 <div className="col-sm-12 col-md-12 col-lg-12">
                     <table className="table table-hover table-sm" >

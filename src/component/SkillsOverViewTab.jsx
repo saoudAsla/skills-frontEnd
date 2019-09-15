@@ -34,6 +34,9 @@ class SkillsOverViewTab extends Component {
         const years = [...new Set(skills.map(skill => new Date(skill.date).getFullYear()))];
         const body = []
         const prevGrade = new Array(header.length - 1).fill(0);
+        /*years.sort((el1, el2) => el1 > el2)
+        prevGrade.fill(0)
+        body.push([years[0], ...prevGrade]);*/
 
         years.forEach(year => {
             skills.filter(skill => new Date(skill.date).getFullYear() === year)
@@ -58,7 +61,7 @@ class SkillsOverViewTab extends Component {
 
 
     render() {
-        const { type, skills, deleteClick } = this.props
+        const { type, skills, deleteClick, submitNewSkill } = this.props
         return (
             <div className="tab-pane fade show active" id={type} role="tabpanel" aria-labelledby={`${type}-tab`}>
                 <div className="google-chart">
@@ -79,7 +82,7 @@ class SkillsOverViewTab extends Component {
                     />
                 </div>
 
-                {!this.state.editInput ? <MySkillsTable type={type} skills={skills} deleteClick={deleteClick} updateClick={this.updateSkill} /> : ''}
+                {!this.state.editInput ? <MySkillsTable type={type} skills={skills} deleteClick={deleteClick} updateClick={this.updateSkill} submitNewSkill={submitNewSkill} /> : ''}
                 {this.state.editInput ? <SkillEditTable type={type} skill={this.state.editInput} submitUpdate={this.submit} cancelUpdate={this.cancelUpdate} inputChanged={this.inputChanged} /> : ''}
 
 

@@ -16,59 +16,69 @@ class MyOwnSkills extends Component {
     }
     this.submitUpdate = this.submitUpdate.bind(this);
     this.deleteSkill = this.deleteSkill.bind(this);
+    this.addSkill = this.addSkill.bind(this);
     this.switchTab = this.switchTab.bind(this);
   }
 
-  componentDidMount() {
+  async componentDidMount() {
 
-    /*try {
-      if (this.state.currentTab === technicalSkills) {
-        const data = await DataService.retrieveTechnicalSkillsById(3);
+    try {
+      // if (this.state.currentTab === technicalSkills) {
+      // const data = await DataService.retrieveTechnicalSkillsById(3);
 
-        this.setState({ technicalSkills: data })
-      } else if (this.state.currentTab === productSkills) {
-        const data = await DataService.retrieveProductSkillsById(3);
+      //this.setState({ technicalSkills: data })
+      //  } else if (this.state.currentTab === productSkills) {
+      // const datproductsa = await DataService.retrieveProductSkillsById(3);
 
-        this.setState({ productSkills: data })
+      const productData = await DataService.retrieveProductSkillsById(3);
+      const technicalData = await DataService.retrieveTechnicalSkillsById(3);
+      //const [technicalData, productData] = await Promise.all(DataService.retrieveTechnicalSkillsById(3), DataService.retrieveProductSkillsById(3))
 
-      }
+      // console.log(await DataService.retrieveTechnicalSkillsById(3))
+      this.setState({ technicalSkills: technicalData, productSkills: productData })
+
+      //}
 
     } catch (error) {
       console.log(error.message)
-    }*/
+    }
 
-    this.setState({
+    /*this.setState({
       productSkills: DataService.retrieveProductSkillsById(2),
       technicalSkills: DataService.retrieveTechnicalSkillsById(2)
-    })
+    })*/
   }
 
   async deleteSkill(type, id) {
 
 
 
-    /* try {
-       const skillToUpdate =  this.state[type].find(skill => skill.name === id);
-       skillToUpdate.grade = grade;
-       const response = await DataService.removeUnapprovedSkillById(skillToUpdate)
-       
-     } catch (error) {
-       // display error ui
-     }finally{
-       if (type === productSkills){
-         const data = await DataService.retrieveProductSkillsById('userid');
-         
-         this.setState({ [type]: data })
-        
-     } else if (type === technicalSkills) {
-         const data = await DataService.retrieveTechnicalSkillsById('userid');
-         
-         this.setState({ [type]: response.data })
-         
-       }
-     }*/
+    try {
 
-    this.setState({ [type]: this.state[type].filter(skill => skill.employeeSkillId !== id) })
+      const response = await DataService.removeUnapprovedSkillById(id)
+
+    } catch (error) {
+      // display error ui
+    } finally {
+      if (type === productSkills) {
+        const data = await DataService.retrieveProductSkillsById(3);
+
+        this.setState({ [type]: data })
+
+      } else if (type === technicalSkills) {
+        const data = await DataService.retrieveTechnicalSkillsById(3);
+
+        this.setState({ [type]: data })
+
+      }
+    }
+
+    // this.setState({ [type]: this.state[type].filter(skill => skill.employeeSkillId !== id) })
+  }
+
+  async addSkill(skillId, date, level) {
+
+    console.log(skillId, date, level)
   }
 
   switchTab(type) {
@@ -85,35 +95,34 @@ class MyOwnSkills extends Component {
   }
 
   async submitUpdate(type, id, grade) {
-    /*try {
-      const skillToUpdate =  this.state[type].find(skill => skill.name === id);
-      skillToUpdate.grade = grade;
-      const response = await DataService.updateSkillByIdSkill(skillToUpdate)
-      
+    try {
+
+      const response = await DataService.updateSkillByIdSkill(id, grade)
+
     } catch (error) {
       // display error ui
-    }finally{
-      if (type === productSkills){
+    } finally {
+      if (type === productSkills) {
         const response = await DataService.retrieveProductSkillsById('3');
-        if (response.status === 200) {
-          this.setState({ [type]: response.data })
-        }
-    } else if (type === technicalSkills) {
+
+        this.setState({ [type]: response })
+
+      } else if (type === technicalSkills) {
         const response = await DataService.retrieveTechnicalSkillsById('3');
-        if (response.status === 200) {
-          this.setState({ [type]: response.data })
-        }
+
+        this.setState({ [type]: response })
+
       }
-    }*/
+    }
     console.log(type, id, grade)
-    this.setState({
+    /*this.setState({
       [type]: this.state[type].map(skill => {
         if (skill.employeeSkillId === id) {
           skill.level = grade;
         }
         return skill;
       })
-    });
+    });*/
 
 
   }
@@ -136,7 +145,7 @@ class MyOwnSkills extends Component {
                 </ul>
 
                 <div className="tab-content ml-1" id="myTabContent">
-                  <SkillsOverViewTab type={this.state.currentTab} skills={this.state[this.state.currentTab]} deleteClick={this.deleteSkill} submitUpdate={this.submitUpdate} />
+                  <SkillsOverViewTab type={this.state.currentTab} skills={this.state[this.state.currentTab]} deleteClick={this.deleteSkill} submitUpdate={this.submitUpdate} submitNewSkill={this.addSkill} />
                 </div>
 
               </div>
