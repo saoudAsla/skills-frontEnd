@@ -81,7 +81,7 @@ class SkillsDataService {
     async addNewSkill(employeeId, skillId, level, date){
         const response = await axios.post(`${API_URL}/skills/`,{employeeId,skillId,level, date});
          if (response.status === 200) {
-           return response.data;
+           return true;
          } 
     }
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DataService from "../service/SkillsDataService"
 import SkillsOverViewTab from './SkillsOverViewTab';
+import { appendFile } from 'fs';
 
 const productSkills = "productSkills";
 const technicalSkills = "technicalSkills";
@@ -76,9 +77,18 @@ class MyOwnSkills extends Component {
     // this.setState({ [type]: this.state[type].filter(skill => skill.employeeSkillId !== id) })
   }
 
-  async addSkill(skillId, date, level) {
+  async addSkill(skillName, date, level, type) {
 
-    console.log(skillId, date, level)
+    try {
+      if (await DataService.addNewSkill(skillName, date, level, type)) {
+        // display success UI
+      }
+
+    } catch (error) {
+      //display error ui 
+    }
+
+    console.log(skillName, date, level)
   }
 
   switchTab(type) {

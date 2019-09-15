@@ -63,7 +63,7 @@ class SkillEditTable extends Component {
                             <tr>
                                 <th>Skill</th>
                                 <th>Grade</th>
-                                <th><button className="btn btn-danger btn-sm" onClick={cancelUpdate.bind(this)}>X</button></th>
+                                <th><button className="btn btn-danger btn-sm" onClick={cancelUpdate.bind(this)}><span>X</span></button></th>
                             </tr>
                         </thead>
                         <tbody>

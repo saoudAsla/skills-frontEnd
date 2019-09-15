@@ -10,21 +10,21 @@ class MySkillsTable extends Component {
         super(props);
         this.state = {
             addMode: false,
-            [id]: 1,
             [skillName]: null,
             [date]: null,
             [level]: null,
-            skills: [{ id: 1, skillName: "CSS" }],
-
             maxLevel: 5,
             minLevel: 1,
+            type: null,
             minYear: 2009,
+            skills: [{ skillName: "CSS" }, { skillName: "CRM" }], // for testing 
+            suggested: [],
             err: []
         };
         this.trySubmit = this.trySubmit.bind(this);
         this.newSkill = this.newSkill.bind(this);
         this.inputChanged = this.inputChanged.bind(this);
-        this.skillNameByID = this.skillNameByID.bind(this);
+        this.getSuggestions = this.getSuggestions.bind(this);
     }
 
     newSkill() {
@@ -71,21 +71,23 @@ class MySkillsTable extends Component {
         }
         this.setState({ err });
     }
+    getSuggestions(phrase) {
+        if (phrase !== '') {
+            const names = this.state.skills
+                .map(skill => skill.skillName)
+                .filter(name => name.startsWith(phrase));
 
+            this.setState({ suggested: names })
+        }
+    }
     trySubmit(e) {
 
         if (this.state.err.length === 0)
-            this.props.submitNewSkill.call(this, this.state.id, this.state.date, this.state.level);
+            this.props.submitNewSkill.call(this, this.state.skillName, this.state.date, this.state.level, this.state.type);
     }
 
-    skillNameByID(id) {
-        const name = this.state.skills.find(skill => skill.id === id).skillName;
 
-        console.log(name)
-
-        return name;
-    }
-
+    //this.getSuggestions(this.state.skillName)
     render() {
         const { type, updateClick, deleteClick, skills } = this.props;
         return (
@@ -94,8 +96,8 @@ class MySkillsTable extends Component {
                     <table className="table table-hover table-sm-12" >
                         <thead className="thead-dark">
                             <tr>
-                                <th>Skill ID</th>
-                                <th>Skill Name</th>
+                                <th>Name</th>
+                                {this.state.addMode ? <th>Type</th> : ''}
                                 <th>Date</th>
                                 <th>Grade</th>
                                 <th>Status</th>
@@ -121,8 +123,20 @@ class MySkillsTable extends Component {
                             }
                             {
                                 this.state.addMode ? <tr>
-                                    <td><input type="number" name={id} value={this.state.id} width="5px" onBlur={this.inputChanged} min={this.state.minVal} max={this.state.maxVal} onChange={e => this.setState({ id: e.target.value })} /></td>
-                                    <td><input type="text" value={this.skillNameByID(this.state.id)} name={skillName} width="5px" disabled /></td>
+                                    <td><div>
+                                        <input type="text" name={skillName} width="5px" onChange={e => this.setState({ skillName: e.target.value })} />
+                                        {this.state.suggested > 0 ? <select>
+                                            {this.state.suggested.map(sug => <option key={sug} value={sug}>{sug}</option>)}
+                                        </select> : ''}
+                                    </div></td>
+                                    <td>
+                                        <select name="Typr">
+                                            <optgroup>
+                                                <option>TECHNICAL</option>
+                                                <option>PRODUCT</option>
+                                            </optgroup>
+                                        </select>
+                                    </td>
                                     <td><input type="date" name={date} onBlur={this.inputChanged} onChange={e => this.setState({ date: e.target.value })} /></td>
                                     <td><input type="number" name={level} width="5px" onBlur={this.inputChanged} min={this.state.minVal} max={this.state.maxVal} onChange={e => this.setState({ level: e.target.value })} /></td>
                                     <td><input type="text" disabled width="5px" /></td>
