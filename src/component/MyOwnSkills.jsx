@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import DataService from "../service/SkillsDataService"
 import SkillsOverViewTab from './SkillsOverViewTab';
-import { appendFile } from 'fs';
 
 const productSkills = "productSkills";
 const technicalSkills = "technicalSkills";
@@ -24,24 +23,12 @@ class MyOwnSkills extends Component {
   async componentDidMount() {
 
     try {
-      // if (this.state.currentTab === technicalSkills) {
-      // const data = await DataService.retrieveTechnicalSkillsById(3);
 
-      //this.setState({ technicalSkills: data })
-      //  } else if (this.state.currentTab === productSkills) {
-      // const datproductsa = await DataService.retrieveProductSkillsById(3);
-
-      const productData = await DataService.retrieveProductSkillsById(3);
-      const technicalData = await DataService.retrieveTechnicalSkillsById(3);
-      //const [technicalData, productData] = await Promise.all(DataService.retrieveTechnicalSkillsById(3), DataService.retrieveProductSkillsById(3))
-
-      // console.log(await DataService.retrieveTechnicalSkillsById(3))
+      const [technicalData, productData] = await Promise.all([DataService.retrieveTechnicalSkillsById(3), DataService.retrieveProductSkillsById(3)]);
       this.setState({ technicalSkills: technicalData, productSkills: productData })
 
-      //}
-
     } catch (error) {
-      console.log(error.message)
+      console.trace(error.message)
     }
 
     /*this.setState({
@@ -51,9 +38,6 @@ class MyOwnSkills extends Component {
   }
 
   async deleteSkill(type, id) {
-
-
-
     try {
 
       const response = await DataService.removeUnapprovedSkillById(id)
@@ -80,15 +64,17 @@ class MyOwnSkills extends Component {
   async addSkill(skillName, date, level, type) {
 
     try {
-      if (await DataService.addNewSkill(skillName, date, level, type)) {
+      const data = await DataService.addNewSkill(skillName, date, level, type)
+      if (data) {
         // display success UI
       }
 
     } catch (error) {
       //display error ui 
+      console.log(error.message)
     }
 
-    console.log(skillName, date, level)
+    console.log(skillName, date, level, type)
   }
 
   switchTab(type) {
@@ -124,7 +110,7 @@ class MyOwnSkills extends Component {
 
       }
     }
-    console.log(type, id, grade)
+    //console.log(type, id, grade)
     /*this.setState({
       [type]: this.state[type].map(skill => {
         if (skill.employeeSkillId === id) {

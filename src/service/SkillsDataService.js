@@ -21,15 +21,19 @@ class SkillsDataService {
          }
         return null;
         //return ProductSkills;
+
+       // return axios.get(`${API_URL}/skills/employeeskills/${id}/PRODUCT`);
     }
 
 
-   async retrieveTechnicalSkillsById(id) {
+    async retrieveTechnicalSkillsById(id) {
         const response = await axios.get(`${API_URL}/skills/employeeskills/${id}/TECHNICAL`);
          if (response.status === 200) {
            return response.data;
          } 
        // return TechnicalSkills;
+       
+     // return axios.get(`${API_URL}/skills/employeeskills/${id}/TECHNICAL`);
     }
 
 
@@ -78,10 +82,10 @@ class SkillsDataService {
         //return axios.get(`${USERNAME_API_URL}/Skills`);
     }
 
-    async addNewSkill(employeeId, skillId, level, date){
-        const response = await axios.post(`${API_URL}/skills/`,{employeeId,skillId,level, date});
+    async addNewSkill(employeeId, skillName, level, date,type){
+        const response = await axios.post(`${API_URL}/skills/`,{employeeId,skillName,level, date, type});
          if (response.status === 200) {
-           return true;
+           return response.data;
          } 
     }
 

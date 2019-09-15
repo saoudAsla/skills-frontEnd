@@ -85,8 +85,6 @@ class SkillsOverViewTab extends Component {
                 {!this.state.editInput ? <MySkillsTable type={type} skills={skills} deleteClick={deleteClick} updateClick={this.updateSkill} submitNewSkill={submitNewSkill} /> : ''}
                 {this.state.editInput ? <SkillEditTable type={type} skill={this.state.editInput} submitUpdate={this.submit} cancelUpdate={this.cancelUpdate} inputChanged={this.inputChanged} /> : ''}
 
-
-
             </div >
         );
     }

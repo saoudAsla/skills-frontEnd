@@ -15,16 +15,16 @@ class MySkillsTable extends Component {
             [level]: null,
             maxLevel: 5,
             minLevel: 1,
-            type: null,
+            type: "TECHNICAL",
             minYear: 2009,
             skills: [{ skillName: "CSS" }, { skillName: "CRM" }], // for testing 
-            suggested: [],
+            // suggested: [],
             err: []
         };
         this.trySubmit = this.trySubmit.bind(this);
         this.newSkill = this.newSkill.bind(this);
         this.inputChanged = this.inputChanged.bind(this);
-        this.getSuggestions = this.getSuggestions.bind(this);
+        //this.getSuggestions = this.getSuggestions.bind(this);
     }
 
     newSkill() {
@@ -71,7 +71,7 @@ class MySkillsTable extends Component {
         }
         this.setState({ err });
     }
-    getSuggestions(phrase) {
+    /*getSuggestions(phrase) {
         if (phrase !== '') {
             const names = this.state.skills
                 .map(skill => skill.skillName)
@@ -79,7 +79,7 @@ class MySkillsTable extends Component {
 
             this.setState({ suggested: names })
         }
-    }
+    }*/
     trySubmit(e) {
 
         if (this.state.err.length === 0)
@@ -130,7 +130,7 @@ class MySkillsTable extends Component {
                                         </select> : ''}
                                     </div></td>
                                     <td>
-                                        <select name="Typr">
+                                        <select name="Typr" defaultValue={this.state.type} onChange={e => this.setState({ type: e.target.value })}>
                                             <optgroup>
                                                 <option>TECHNICAL</option>
                                                 <option>PRODUCT</option>
@@ -144,25 +144,19 @@ class MySkillsTable extends Component {
                                     <td><button className="btn btn-primary btn-sm" onClick={this.trySubmit}>Add Skill</button></td>
                                 </tr> : ''
                             }
-                            {
-                                <tr><button className="btn btn-primary btn-sm" onClick={this.newSkill}>New Skill</button></tr>
-                            }
+
                         </tbody>
                     </table>
-
-
+                    <button className="btn btn-primary btn-sm" onClick={this.newSkill}>New Skill</button>
 
                     {
-                        this.state.err.map(e =>
-                            <div class="alert alert-danger" role="alert">
+                        this.state.err.map((e, index) =>
+                            <div className="alert alert-danger" role="alert" key={index}>
                                 {e}
                             </div>
                         )
 
                     }
-
-
-
                 </div>
             </div>
         );
